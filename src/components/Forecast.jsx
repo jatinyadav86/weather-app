@@ -582,7 +582,7 @@ const Forecast = () => {
           )}
         </div>
         <div className="footer-info absolute bottom-10 text-white lg:hidden xl:block">
-          | Developed by <a href="#">Jatin Yadav</a> |
+          | Developed by <a href="#">Jatin Dagar</a> |
         </div>
       </div>
     );
