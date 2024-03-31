@@ -276,7 +276,7 @@ const Forecast = () => {
 
   if (fetched == true) {
     return (
-      <div style={{backgroundImage: `url('./images/bg1.jpg')`}} className="w-screen xl:h-screen relative bg-cover bg-no-repeat flex justify-center xl:static no-scrollbar">
+      <div style={{backgroundImage: `url('./images/${back}.jpg')`}} className="w-screen xl:h-screen relative bg-cover bg-no-repeat flex justify-center xl:static no-scrollbar">
         <div
           style={{backgroundImage: `url('./images/background/${background}.jpg')`}}
           className={`currentLocation w-full ${
@@ -582,7 +582,7 @@ const Forecast = () => {
           )}
         </div>
         <div className="footer-info absolute bottom-10 text-white lg:hidden xl:block">
-          | Developed by <a href="#">Jatin Dagar</a> |
+          | Developed by <a href="#">Jatin Yadav</a> |
         </div>
       </div>
     );
