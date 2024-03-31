@@ -365,7 +365,7 @@ const Forecast = () => {
                 className="main-image size-28 my-4 lg:size-20"
                 alt="icon"
               />
-              <div className="condition text-white text-3xl font-medium my-1 lg:text-xl">
+              <div className="condition text-white text-3xl font-medium my-1 lg:text-xl text-center">
                 {currData.conditions}
               </div>
               <div className="w-[80%] mt-4 mb-3  text-xs font-medium text-white lg:text-sm text-center">
