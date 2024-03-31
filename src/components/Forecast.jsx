@@ -269,7 +269,7 @@ const Forecast = () => {
     }
     else{
       const rndInt = Math.floor(Math.random() * 4) + 1;
-      setBack(`bg${rndInt}`);
+      setBack(`city${rndInt}`);
     }
   }
 
