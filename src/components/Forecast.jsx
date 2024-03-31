@@ -276,7 +276,7 @@ const Forecast = () => {
 
   if (fetched == true) {
     return (
-      <div style={{backgroundImage: `url('/weather-app/images/${back}.jpg')`}} className="w-screen xl:h-screen relative bg-cover bg-no-repeat flex justify-center xl:static no-scrollbar">
+      <div style={{backgroundImage: `url('./images/${back}.jpg')`}} className="w-screen xl:h-screen relative bg-cover bg-no-repeat flex justify-center xl:static no-scrollbar">
         <div
           style={{backgroundImage: `url('/images/background/${background}.jpg')`}}
           className={`currentLocation w-full ${
