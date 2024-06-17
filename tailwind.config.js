@@ -15,12 +15,11 @@ export default {
           width: "5px",
         },
         ".scrollbar::-webkit-scrollbar-track": {
-          // background: "orange",
+          margin: "10px 0"
         },
         ".scrollbar::-webkit-scrollbar-thumb": {
           "background-color": "gray",
-          // "border-radius": "20px",     
-          // "border": "3px solid orange"
+          "border-radius": "8px",
         },
         ".no-scrollbar": {
           "-ms-overflow-style": "none" /* IE and Edge */,

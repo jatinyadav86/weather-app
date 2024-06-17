@@ -1,8 +1,8 @@
 import React from "react";
 
-const LocPermition = () => {
+const LocPermition = ({back}) => {
   return (
-    <div style={{backgroundImage: `url('./images/bg4.jpg')`}} className="w-screen h-screen bg-cover bg-no-repeat flex flex-col items-center">
+    <div style={{backgroundImage: `url('./images/${back}.jpg')`}} className="w-screen h-screen bg-cover bg-no-repeat flex flex-col items-center">
       <div className="box w-[80%] h-[70%]  mt-14 flex flex-col items-center relative xl:w-[50%] xl:h-[80%] xl:mt-8">
         <div className="w-full h-full bg-black opacity-60"></div>
         <img src={'images/WeatherIcons.gif'} className="size-72 absolute top-0 lg:size-96 xl:size-80" alt="" />
