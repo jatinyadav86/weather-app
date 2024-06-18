@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LocPermition from "./LocPermition";
-import img1 from "../wind-day.jpg"
 
 const Forecast = () => {
 
   // defining states
-  const [data, setData] = useState("");
-  const [currData, setCurrData] = useState("");
+  const [data, setData] = useState({});
+  const [currData, setCurrData] = useState({});
   const [fetched, setFetched] = useState(false);
   const [permition, setPermition] = useState(false);
   const [background, setBackground] = useState("city");
@@ -95,7 +94,7 @@ const Forecast = () => {
   // geeting name of location using lat and lon
   const getPlace = (lat, lon) => {
     axios
-      .get(`https://us1.locationiq.com/v1/reverse?key=pk.2169c38da1abf2554fd64788f72f5de5&lat=${lat}&lon=${lon}&format=json&`)
+      .get(`https://us1.locationiq.com/v1/reverse?key=pk.2169c38da1abf2554fd64788f72f5de5&lat=${lat}&lon=${lon}&format=json`)
       .then((response) => {
         const data = response.data;
         getWeather(
@@ -228,10 +227,9 @@ const Forecast = () => {
     }
   };
 
-  if (fetched == true) {
+  if (fetched) {
     return (
       <div style={{ backgroundImage: `url('./images/${back}.jpg')` }} className="w-screen xl:h-screen relative bg-cover bg-no-repeat flex justify-center xl:static no-scrollbar">
-      <img src={img1} alt="" className="h-28 hidden" />
         <div style={{ backgroundImage: `url('./images/background/${background}.jpg')` }} className={`currentLocation w-full ${permition ? "h-[1300px]" : "h-[120vh]"} bg-cover bg-no-repeat flex flex-col items-center lg:w-screen lg:h-screen overflow-hidden lg:items-start xl:w-[30%] xl:h-[80%] xl:relative xl:mt-8 transition-all ease-in-out duration-1000 delay-100 rounded-l-lg`}>
           <div className="city w-full flex items-center justify-center lg:justify-around lg:hidden">
             <form onSubmit={handleClick2} className="flex justify-center items-center">
