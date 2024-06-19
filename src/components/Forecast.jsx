@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LocPermition from "./LocPermition";
+import apiKeys from "../apiKey.js";
 
 const Forecast = () => {
 
@@ -53,7 +54,7 @@ const Forecast = () => {
     ];
     const arr = date.split("-");
     const day = getDay(date);
-    const month = months[arr[1].slice(1) - 1];
+    const month = months[parseInt(arr[1]) - 1];
     return `${day}, ${arr[2]} ${month} ${arr[0]}`;
   };
 
@@ -84,17 +85,13 @@ const Forecast = () => {
     // logic to change background depending on day or night
     const d = new Date();
     let hour = d.getHours();
-    if (hour >= 6 && hour < 18) {
-      setBack('day-bg')
-    } else {
-      setBack('night-bg')
-    }
+    setBack(hour >= 6 && hour < 18 ? 'day-bg' : 'night-bg');
   }, []);
 
   // geeting name of location using lat and lon
   const getPlace = (lat, lon) => {
     axios
-      .get(`https://us1.locationiq.com/v1/reverse?key=pk.2169c38da1abf2554fd64788f72f5de5&lat=${lat}&lon=${lon}&format=json`)
+      .get(`${apiKeys.locationBase}?key=${apiKeys.locationkey}&lat=${lat}&lon=${lon}&format=json`)
       .then((response) => {
         const data = response.data;
         getWeather(
@@ -102,16 +99,16 @@ const Forecast = () => {
         );
       })
       .catch((err) => {
-        console.log(err);
+        alert("Something went wrong while detecting your location")
       });
   };
 
   // geeting weather of a given location from visualcrossing api
   const getWeather = (address) => {
     axios
-      .get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${address}?unitGroup=metric&include=days%2Calerts%2Cevents&key=EQE3ZER6KYRMLJA39LR3A9RR8&contentType=json`)
+      .get(`${apiKeys.weatherBase}/${address}?unitGroup=metric&include=days%2Calerts%2Cevents&key=${apiKeys.weatherkey}contentType=json`)
       .then(async (response) => {
-        const weather = await response.data;
+        const weather = response.data;
         setCurrData(weather.days[0]);
         setData(weather);
         setFetched(true);
@@ -150,8 +147,9 @@ const Forecast = () => {
     if (document.querySelector("#cityName").value.length <= 1) {
       alert("Please enter a valid city name");
     } else {
-      const city = document.querySelector("#cityName");
-      getWeather(city.value);
+      const city = document.querySelector("#cityName").value;
+      const sanitizedValue  = encodeURIComponent(city)
+      getWeather(sanitizedValue);
     }
   };
 
@@ -161,8 +159,9 @@ const Forecast = () => {
     if (document.querySelector("#cityName2").value.length <= 1) {
       alert("Please enter a valid city name");
     } else {
-      const city = document.querySelector("#cityName2");
-      getWeather(city.value);
+      const city = document.querySelector("#cityName2").value;
+      const sanitizedValue  = encodeURIComponent(city)
+      getWeather(sanitizedValue);
     }
   };
 
@@ -178,6 +177,7 @@ const Forecast = () => {
     myElement.children[0].classList.remove("hover:bg-blue-950", "hover:rounded-lg");
     document.querySelector(cls).classList.remove("hover:bg-blue-950", "hover:rounded-lg");
     document.querySelector(cls).classList.add("rounded-lg", "bg-blue-600");
+    console.log(data)
   };
 
   // function to change background based on different weather condition
@@ -261,7 +261,7 @@ const Forecast = () => {
                 </div>
               </div>
               <div className="date hidden text-white font-bold text-2xl absolute bottom-8 left-6 lg:block xl:text-sm xl:bottom-5 xl:left-4">
-                <div>{getDate(currData.datetime)}</div>
+                <div>{getDate(encodeURIComponent(currData.datetime))}</div>
               </div>
             </div>
           ) : (
